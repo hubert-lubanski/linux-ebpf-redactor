@@ -6,7 +6,7 @@ This repository contains a core Linux Kernel patch (developed against 6.x) that 
 ## Architectural Highlights
 This is not a standard BPF tracing script. It involves deep modifications to the kernel source tree, custom syscalls, and extension of the eBPF verifier.
 
-All the modifications are made in `solution.patch` file.
+All the modifications can be found in `solution.patch` file.
 
 * **Custom eBPF Program Type (`BPF_PROG_TYPE_REDACTOR`):** Engineered a native eBPF program type and attach mechanism (`BPF_REDACTOR`) deeply integrated with the kernel verifier (`redactor_verifier_ops`). This enforces strict memory boundaries and access rights for BPF programs interacting with the custom `redactor_ctx`.
 * **Deep VFS Interception:** Injected hooks directly into `fs/open.c` (`do_sys_openat2`) for BPF-driven redaction policy evaluation, and `fs/read_write.c` (`vfs_read`, `do_iter_readv_writev`) for payload mutation.
